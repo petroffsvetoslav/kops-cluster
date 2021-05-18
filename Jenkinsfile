@@ -6,12 +6,13 @@ pipeline {
                 script { 
                     properties([
                         parameters([
-                            string(
-                                defaultValue: 's3://my-state-store', 
-                                name: 'KOPS_STATE_STORE', 
-                                trim: true
-                                description: "S3 bucket that will store the state"
-                            ),
+                            // string(
+                            //     defaultValue: 's3://my-state-store', 
+                            //     name: 'KOPS_STATE_STORE', 
+                            //     trim: true
+                            //     description: "S3 bucket that will store the state"
+                            // ),
+                            string(name: 'KOPS_STATE_STORE', defaultValue : 's3://my-state-store', description: "S3 bucket that will store the state"),
                             string(
                                 defaultValue: 'cluster.k8s.local', 
                                 name: 'CLUSTER_NAME', 
