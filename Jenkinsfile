@@ -10,7 +10,7 @@ pipeline {
                                 defaultValue: 's3://my-state-store', 
                                 name: 'KOPS_STATE_STORE', 
                                 trim: true
-                                description: 'S3 bucket that will store the state'
+                                description: "S3 bucket that will store the state"
                             ),
                             string(
                                 defaultValue: 'cluster.k8s.local', 
