@@ -6,12 +6,6 @@ pipeline {
                 script { 
                     properties([
                         parameters([
-                            // string(
-                            //     defaultValue: 's3://my-state-store', 
-                            //     name: 'KOPS_STATE_STORE', 
-                            //     trim: true
-                            //     description: "S3 bucket that will store the state"
-                            // ),
                             string(name: 'KOPS_STATE_STORE', defaultValue : 's3://my-state-store', description: "S3 bucket that will store the state"),
                             string(name: 'CLUSTER_NAME', defaultValue : 'cluster.k8s.local', description: "Cluster name"),
                             string(name: 'VPC_ID', defaultValue : 'vpc-12345678', description: "The VPC to use"),
@@ -32,6 +26,7 @@ pipeline {
         }
         stage('Create cluster') {
             steps {
+                sh 'echo "Saving cluster template to cluster.yaml"'
                 sh 'kops create cluster --state $KOPS_STATE_STORE --name $CLUSTER_NAME --vpc $VPC_ID --subnets $SUBNET_IDS --master-size $MASTER_SIZE --node-size $NODE_SIZE --node-count $NODE_COUNT --zones $ZONES --dry-run -oyaml > cluster.yaml'
             }
         }
@@ -40,6 +35,7 @@ pipeline {
                 timeout(time: 5, unit: "MINUTES") {
                     input message: 'Do you want to approve the deploy?', ok: 'Yes'
                             }
+                sh 'echo "deploying cluster from template file cluster.yaml"'
                 sh 'kops create -f cluster.yaml'
             }
         }
