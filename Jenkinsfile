@@ -47,8 +47,8 @@ pipeline {
                                 trim: true
                             ),
                             string(
-                                defaultValue: 'ZONES', 
-                                name: 'eu-central-1,us-east-1b', 
+                                defaultValue: 'eu-central-1,us-east-1b', 
+                                name: 'ZONES', 
                                 trim: true
                             )
                         ])
