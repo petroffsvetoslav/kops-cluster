@@ -13,46 +13,18 @@ pipeline {
                             //     description: "S3 bucket that will store the state"
                             // ),
                             string(name: 'KOPS_STATE_STORE', defaultValue : 's3://my-state-store', description: "S3 bucket that will store the state"),
-                            string(
-                                defaultValue: 'cluster.k8s.local', 
-                                name: 'CLUSTER_NAME', 
-                                trim: true
-                            ),
-                            string(
-                                defaultValue: 'vpc-12345678', 
-                                name: 'VPC_ID', 
-                                trim: true
-                            ),
+                            string(name: 'CLUSTER_NAME', defaultValue : 'cluster.k8s.local', description: "Cluster name"),
+                            string(name: 'VPC_ID', defaultValue : 'vpc-12345678', description: "The VPC to use"),
+                            string(name: 'SUBNET_IDS', defaultValue : 'subnet-27bfkste542fdf82f,subnet-0bc9b753kwy6a535', description: "Shared subnets to use"),
+                            string(name: 'MASTER_SIZE', defaultValue : 'c5.large', description: "Instance type for the master"),
+                            string(name: 'NODE_SIZE', defaultValue : 'm5.large', description: "Instance type for the nodes"),
+                            string(name: 'NODE_COUNT', defaultValue : '2', description: "The number of worker nodes"),
+                            string(name: 'ZONES', defaultValue : 'eu-central-1,us-east-1b', description: "Zones in which to run the cluster")
                             // string(
                             //     defaultValue: '10.0.0.0/16', 
                             //     name: 'NETWORK_CIDR', 
                             //     trim: true
-                            // ),
-                            string(
-                                defaultValue: 'subnet-27bfkste542fdf82f,subnet-0bc9b753kwy6a535', 
-                                name: 'SUBNET_IDS', 
-                                trim: true
-                            ),
-                            string(
-                                defaultValue: 'c5.large', 
-                                name: 'MASTER_SIZE', 
-                                trim: true
-                            ),
-                            string(
-                                defaultValue: 'm5.large', 
-                                name: 'NODE_SIZE', 
-                                trim: true
-                            ),
-                            string(
-                                defaultValue: '2', 
-                                name: 'NODE_COUNT', 
-                                trim: true
-                            ),
-                            string(
-                                defaultValue: 'eu-central-1,us-east-1b', 
-                                name: 'ZONES', 
-                                trim: true
-                            )
+                            // )
                         ])
                     ])
                 }
