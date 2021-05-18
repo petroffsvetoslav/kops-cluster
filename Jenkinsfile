@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Setup parameters') {
             steps {
-                script { 
+                script {
                     properties([
                         parameters([
                             string(name: 'KOPS_STATE_STORE', defaultValue : 's3://my-state-store', description: "S3 bucket that will store the state"),
@@ -15,8 +15,8 @@ pipeline {
                             string(name: 'NODE_COUNT', defaultValue : '2', description: "The number of worker nodes"),
                             string(name: 'ZONES', defaultValue : 'eu-central-1,us-east-1b', description: "Zones in which to run the cluster")
                             // string(
-                            //     defaultValue: '10.0.0.0/16', 
-                            //     name: 'NETWORK_CIDR', 
+                            //     defaultValue: '10.0.0.0/16',
+                            //     name: 'NETWORK_CIDR',
                             //     trim: true
                             // )
                         ])
@@ -46,3 +46,6 @@ pipeline {
         }
     }
 }
+
+//  kops create man
+// https://github.com/kubernetes/kops/blob/master/docs/cli/kops_create_cluster.md
